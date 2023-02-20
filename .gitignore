@@ -28,4 +28,4 @@ core
 *.exe
 *.out
 *.app
-wc
+memscan
