@@ -31,15 +31,23 @@ MemoryRegion::MemoryRegion( string newFileLine ) {
     MemoryRegion::startAddress = newFileLine.substr(0,12);
 
     #ifdef debug
-      cout << MemoryRegion::startAddress << endl;
+      cout << "startAddress  " << MemoryRegion::startAddress << endl;
     #endif
 
 
     // Set endAddress
     MemoryRegion::endAddress = newFileLine.substr(13,12);
 
+    #ifdef debug
+      cout << "endAddress  " << MemoryRegion::endAddress << endl;
+    #endif
+
     // Set permissions
     MemoryRegion::permissions = newFileLine.substr(26,4);
+
+    #ifdef debug
+      cout << "permissions  " << MemoryRegion::permissions << endl;
+    #endif
 
     // Set pathName
     size_t pathNameStart = newFileLine.find(" /");
@@ -56,11 +64,23 @@ MemoryRegion::MemoryRegion( string newFileLine ) {
        MemoryRegion::pathName = "anonymous";
     }
 
+    #ifdef debug
+      cout << "pathName  " << MemoryRegion::pathName << endl;
+    #endif
+
     // Set startAddressValue
     MemoryRegion::startAddressValue = stoul(MemoryRegion::startAddress, nullptr, 16);
 
+    #ifdef debug
+      cout << "startAddressValue  " << MemoryRegion::startAddressValue << endl;
+    #endif
+
     // Set endAddressValue
     MemoryRegion::endAddressValue = stoul(MemoryRegion::endAddress, nullptr, 16);
+
+    #ifdef debug
+      cout << "endAddressValue  " << MemoryRegion::endAddressValue << endl;
+    #endif
 
     // Set numBytesRead
     MemoryRegion::numBytesRead = (int) ( MemoryRegion::startAddressValue - MemoryRegion::endAddressValue );
@@ -78,6 +98,10 @@ MemoryRegion::MemoryRegion( string newFileLine ) {
 
     }
 
+    #ifdef debug
+      cout << "isReadable  " MemoryRegion::isReadable << endl;
+    #endif
+
     // Set numberOfAs
     if( MemoryRegion::isReadable == true ) {
         
@@ -91,6 +115,10 @@ MemoryRegion::MemoryRegion( string newFileLine ) {
         }
 
     }
+
+    #ifdef debug
+      cout << "numberOfAs  " << MemoryRegion::numberOfAs << endl;
+    #endif
 
 }
 
