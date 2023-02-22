@@ -78,3 +78,34 @@ MemoryRegion::MemoryRegion( string newFileLine ) {
     }
 
 }
+
+
+////////////////////  Getters  ////////////////////
+
+string MemoryRegion::getPermissions() const noexcept {
+    return MemoryRegion::permissions;
+}
+
+string MemoryRegion::getPathName() const noexcept {
+    return MemoryRegion::pathName;
+}
+
+bool MemoryRegion::isReadable() const noexcept {
+    return MemoryRegion::isReadable;
+}
+
+int MemoryRegion::getnumBytesRead() const noexcept {
+    return MemoryRegion::numBytesRead;
+}
+
+int MemoryRegion::getnumberOfAs() const noexcept {
+    return MemoryRegion::numberOfAs;
+}
+
+unsigned long MemoryRegion::getStartAddressValue() const noexcept {
+    return MemoryRegion::startAddressValue;
+}
+
+unsigned long MemoryRegion::getEndAddressValue() const noexcept {
+    return MemoryRegion::endAddressValue;
+}
