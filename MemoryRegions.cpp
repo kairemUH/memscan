@@ -83,7 +83,7 @@ MemoryRegion::MemoryRegion( string newFileLine ) {
     #endif
 
     // Set numBytesRead
-    MemoryRegion::numBytesRead = (int) ( MemoryRegion::startAddressValue - MemoryRegion::endAddressValue );
+    MemoryRegion::numBytesRead = (int) ( MemoryRegion::endAddressValue - MemoryRegion::startAddressValue );
 
     // Set isReadable. If the memory is not readable, then the object is potentially all junk and it should not be used.
     if( (pathName.find("vvar") != string::npos) || (permissions.find("r") == string::npos) ) {
@@ -99,7 +99,7 @@ MemoryRegion::MemoryRegion( string newFileLine ) {
     }
 
     #ifdef debug
-      cout << "isReadable  " MemoryRegion::isReadable << endl;
+      cout << "isReadable  " << MemoryRegion::isReadable << endl;
     #endif
 
     // Set numberOfAs
@@ -107,11 +107,10 @@ MemoryRegion::MemoryRegion( string newFileLine ) {
         
         for( unsigned long i = MemoryRegion::startAddressValue; i <= MemoryRegion::endAddressValue; i++ ) {
 
-            //if( * (char*)i == 'A' ) {
-            //    MemoryRegion::numberOfAs++;
-            //}
-           MemoryRegion::numberOfAs = 1;
-
+            if( * (char*)i == 'A' ) {
+                MemoryRegion::numberOfAs++;
+            }
+            // MemoryRegion::numberOfAs = 1;
         }
 
     }
