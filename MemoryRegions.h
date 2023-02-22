@@ -35,11 +35,13 @@ public:
 
 ////////////////////  Getters  ////////////////////
 public:
+    string getStartAddress() const noexcept;
+    string getEndAddress() const noexcept;
     string getPermissions()  const noexcept;
     string getPathName()     const noexcept;
-    bool   isReadable()      const noexcept;
-    int    getnumBytesRead() const noexcept;
-    int    getnumberOfAs()   const noexcept;
+    bool   getIsReadable()      const noexcept;
+    int    getNumBytesRead() const noexcept;
+    int    getNumAs()   const noexcept;
     unsigned long getStartAddressValue() const noexcept;
     unsigned long getEndAddressValue()   const noexcept;
     

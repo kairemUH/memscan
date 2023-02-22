@@ -82,6 +82,14 @@ MemoryRegion::MemoryRegion( string newFileLine ) {
 
 ////////////////////  Getters  ////////////////////
 
+string MemoryRegion::getStartAddress() const noexcept {
+    return MemoryRegion::startAddress;
+}
+
+string MemoryRegion::getEndAddress() const noexcept {
+    return MemoryRegion::endAddress;
+}
+
 string MemoryRegion::getPermissions() const noexcept {
     return MemoryRegion::permissions;
 }
@@ -90,15 +98,15 @@ string MemoryRegion::getPathName() const noexcept {
     return MemoryRegion::pathName;
 }
 
-bool MemoryRegion::isReadable() const noexcept {
+bool MemoryRegion::getIsReadable() const noexcept {
     return MemoryRegion::isReadable;
 }
 
-int MemoryRegion::getnumBytesRead() const noexcept {
+int MemoryRegion::getNumBytesRead() const noexcept {
     return MemoryRegion::numBytesRead;
 }
 
-int MemoryRegion::getnumberOfAs() const noexcept {
+int MemoryRegion::getNumAs() const noexcept {
     return MemoryRegion::numberOfAs;
 }
 
