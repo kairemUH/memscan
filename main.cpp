@@ -24,7 +24,7 @@
 
 using namespace std;
 
-int main( int argc, char* argv[] ) {
+int main() {
 
     // Create a list of memory regions
     vector<MemoryRegion> allLegalMemoryRegions;
@@ -54,6 +54,7 @@ int main( int argc, char* argv[] ) {
 
     }
 
+    mapFile.close();
 
     // Go through array of memory regions and print out data to console
     unsigned int vectorSize = allLegalMemoryRegions.size();
@@ -62,8 +63,8 @@ int main( int argc, char* argv[] ) {
 
         if( allLegalMemoryRegions[i].getIsReadable() ) {
 
-            cout << i << ":   " << allLegalMemoryRegions[i].getStartAddress() << " - " << allLegalMemoryRegions[i].getEndAddress() << allLegalMemoryRegions[i].getPermissions()
-                 << "  Number of bytes read [" << allLegalMemoryRegions[i].getNumBytesRead() << "]  Number of 'A' is [" << allLegalMemoryRegions[i].getNumAs() << "]" << endl;
+            cout << i << ":   " << allLegalMemoryRegions[i].getStartAddress() << " - " << allLegalMemoryRegions[i].getEndAddress() << "   " <<  allLegalMemoryRegions[i].getPermissions()
+                 << "   Number of bytes read [" << allLegalMemoryRegions[i].getNumBytesRead() << "]   Number of 'A' is [" << allLegalMemoryRegions[i].getNumAs() << "]" << endl;
 
         }
 

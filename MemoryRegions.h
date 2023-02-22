@@ -12,15 +12,18 @@
 
 #pragma once
 
+#include <iostream>
+#include <cstring>
+
 class MemoryRegion {
 
 ////////////////////  Member Variables  ////////////////////
 private:
-    string fileLine;
-    string startAddress;
-    string endAddress;
-    string permissions;
-    string pathName;
+   std::string fileLine;
+   std::string startAddress;
+   std::string endAddress;
+   std::string permissions;
+   std::string pathName;
     bool   isReadable;
     int    numBytesRead;
     int    numberOfAs;
@@ -30,15 +33,15 @@ private:
 
 ////////////////////  Constructors  ////////////////////
 public:
-    MemoryRegion( string newFileLine );
+    MemoryRegion( std::string newFileLine );
 
 
 ////////////////////  Getters  ////////////////////
 public:
-    string getStartAddress() const noexcept;
-    string getEndAddress() const noexcept;
-    string getPermissions()  const noexcept;
-    string getPathName()     const noexcept;
+    std::string getStartAddress() const noexcept;
+    std::string getEndAddress() const noexcept;
+    std::string getPermissions()  const noexcept;
+    std::string getPathName()     const noexcept;
     bool   getIsReadable()      const noexcept;
     int    getNumBytesRead() const noexcept;
     int    getNumAs()   const noexcept;

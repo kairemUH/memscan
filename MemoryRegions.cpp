@@ -10,8 +10,7 @@
 /// @author  Kai Matsusaka <kairem@hawaii.edu>
 ///////////////////////////////////////////////////////////////////////////////
 
-#include <iostream>
-#include <string>
+#define debug
 
 #include "MemoryRegions.h"
 
@@ -22,10 +21,19 @@ using namespace std;
 MemoryRegion::MemoryRegion( string newFileLine ) {
 
     // Set fileLine
-    strcpy( MemoryRegion::fileLine, newFileLine );
+    MemoryRegion::fileLine = newFileLine;
+   
+    #ifdef debug
+      cout << MemoryRegion::fileLine << endl;
+    #endif
 
     // Set startAddress
     MemoryRegion::startAddress = newFileLine.substr(0,12);
+
+    #ifdef debug
+      cout << MemoryRegion::startAddress << endl;
+    #endif
+
 
     // Set endAddress
     MemoryRegion::endAddress = newFileLine.substr(13,12);
@@ -35,12 +43,18 @@ MemoryRegion::MemoryRegion( string newFileLine ) {
 
     // Set pathName
     size_t pathNameStart = newFileLine.find(" /");
+    
     if ( pathNameStart == string::npos ) {
         pathNameStart = newFileLine.find(" [");
     }
-    // @todo throw exception if still npos
 
-    MemoryRegion::pathName = newFileLine.substr(pathNameStart);
+    if (pathNameStart != string::npos ) {
+        MemoryRegion::pathName = newFileLine.substr(pathNameStart);
+    }
+
+    else {
+       MemoryRegion::pathName = "anonymous";
+    }
 
     // Set startAddressValue
     MemoryRegion::startAddressValue = stoul(MemoryRegion::startAddress, nullptr, 16);
@@ -69,9 +83,10 @@ MemoryRegion::MemoryRegion( string newFileLine ) {
         
         for( unsigned long i = MemoryRegion::startAddressValue; i <= MemoryRegion::endAddressValue; i++ ) {
 
-            if( * (void*)i == 'A' ) {
-                MemoryRegion::numberOfAs++;
-            }
+            //if( * (char*)i == 'A' ) {
+            //    MemoryRegion::numberOfAs++;
+            //}
+           MemoryRegion::numberOfAs = 1;
 
         }
 
