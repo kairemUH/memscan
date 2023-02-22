@@ -3,7 +3,7 @@
 ///          Lab 4 - memscan - SRE - Spring 2023
 ///
 ///
-/// memscan - find all legal memory adresses and count number of 'A's in memory
+/// memscan - find all legal memory addresses and count number of 'A's in memory
 /// 
 ///
 /// @file    memscan.cpp
@@ -15,33 +15,60 @@
 // Check to see if not readable. If permissions are not readable or it is vvar, then set isreadable to false. Dont read the adresses.
 // If is readable, go through and read the adresses and count number of 'A's in memory.
 
-// Create an array of memory regions
-// Open and read through maps file and fill in array of memory regions
-// Go through array of memory regions and print out data to console
-
 #include <iostream>
-#include <cstring>
+#include <fstream>
+#include <string>
+#include <vector>
+
+#include "MemoryRegions.h"
 
 using namespace std;
 
-struct memoryRegion {
+int main( int argc, char* argv[] ) {
 
-    string fileLine;
-    string startAdress;
-    string endAdress;
-    string permissions;
-    int    numBytesRead;
-    int    numberOfAs;
-    bool   isReadable;
+    // Create a list of memory regions
+    vector<MemoryRegion> allLegalMemoryRegions;
 
-};
+    /// Open the maps file in read only mode
+    ifstream mapFile;
 
-int main() {
+    mapFile.open( "/proc/self/maps", ios::in );
 
-memoryRegion allLegalMemory[100];
+    if( !mapFile ) {
 
-// Open and read through maps file and fill in array of memory regions
+        cout << "Error: could not open file [maps]." << endl;
 
-return 0;
+        return 0;
+
+    }
+
+
+    // Process file lines and fill in list of memory regions
+    string line;
+
+    while( getline(mapFile, line) ) {
+
+        MemoryRegion temp = MemoryRegion( line );
+
+        allLegalMemoryRegions.push_back(temp);
+
+    }
+
+
+    // Go through array of memory regions and print out data to console
+    unsigned int vectorSize = allLegalMemoryRegions.size();
+
+    for( unsigned int i = 0; i < vectorSize; i++ ) {
+
+        if( allLegalMemoryRegions[i].getIsReadable() ) {
+
+            cout << i << ":   " << allLegalMemoryRegions[i].getStartAddress() << " - " << allLegalMemoryRegions[i].getEndAddress() << allLegalMemoryRegions[i].getPermissions()
+                 << "  Number of bytes read [" << allLegalMemoryRegions[i].getNumBytesRead() << "]  Number of 'A' is [" << allLegalMemoryRegions[i].getNumAs() << "]" << endl;
+
+        }
+
+    }
+
+    return 0;
 
 }
