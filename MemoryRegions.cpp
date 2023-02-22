@@ -86,7 +86,7 @@ MemoryRegion::MemoryRegion( string newFileLine ) {
     MemoryRegion::numBytesRead = (int) ( MemoryRegion::endAddressValue - MemoryRegion::startAddressValue );
 
     // Set isReadable. If the memory is not readable, then the object is potentially all junk and it should not be used.
-    if( (pathName.find("vvar") != string::npos) || (permissions.find("r") == string::npos) || (pathName.find("memscan") && permissions.find("w")) ) {
+    if( (pathName.find("vvar") != string::npos) || (permissions.find("r") == string::npos) || (permissions.find("w") != string::npos) || (permissions.find("x") != string::npos) ) {
 
         MemoryRegion::isReadable = false;
 
