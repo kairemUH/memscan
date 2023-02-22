@@ -29,3 +29,6 @@ core
 *.out
 *.app
 memscan
+
+# Ignore vscode settings
+*.json
