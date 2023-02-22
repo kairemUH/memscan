@@ -15,14 +15,20 @@ TARGET = memscan
 
 all: $(TARGET)
 
-CC     = gcc
+CC     = g++
 CFLAGS = -Wall -Wextra $(DEBUG_FLAGS)
 
 debug: DEBUG_FLAGS = -g -DDEBUG
 debug: clean $(TARGET)
 
-memscan: memscan.c
-	$(CC) $(CFLAGS) -o $(TARGET) memscan.c
+MemoryRegions.o: MemoryRegions.cpp MemoryRegions.h
+	$(CC) $(CFLAGS) -c MemoryRegions.cpp
+
+main.o: main.cpp MemoryRegions.h
+	$(CC) $(CFLAGS) -c main.cpp
+
+memscan: main.o MemoryRegions.o
+	$(CC) $(CFLAGS) -o $(TARGET) main.o MemoryRegions.o
 
 test: memscan
 	./memscan
